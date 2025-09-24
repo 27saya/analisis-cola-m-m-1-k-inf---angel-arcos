@@ -17,7 +17,7 @@ class SistemaColas:
         finServicio=None
         cola=[]
 
-        #Métricas
+        #Metricas
         clientesRechazados=clientesAtendidos=totalLlegadas=0
         areaSistema=areaCola=ultimoEvento=0.0
         sumaTiempoSistema=sumaTiempoCola=0.0
@@ -28,7 +28,7 @@ class SistemaColas:
             if tiempoSiguiente>self.tiempoMax:
                 dt=self.tiempoMax-ultimoEvento
                 N=len(cola)+(1 if finServicio else 0)  #clientes en sistema
-                Q=len(cola)                              #clientes en cola
+                Q=len(cola)                            #clientes en cola
                 areaSistema+=N * dt
                 areaCola+=Q * dt
                 break
@@ -75,11 +75,10 @@ class SistemaColas:
             'Tasa efectiva de llegadas': (totalLlegadas - clientesRechazados) / tiempoTotal if tiempoTotal else 0.0
         }
 
-#ejemplo de uso:
 if __name__=="__main__":
     sim = SistemaColas(tasaLlegada=0.95, tasaServicio=1/1.45, capacidadSistema=5, tiempoMax=15000.0, semilla=1234)
     resultados = sim.run()
 
-    # Mostrar resultados uno debajo del otro
     for clave, valor in resultados.items():
         print(f"{clave}: {valor:.2f}")
+
